@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="blob:https://vercel.com/c233bdae-b45f-4a6b-8241-6d66c97e6f5e" />
+	<img src="aluracord.png" />
 </div>
 
 ## :dart: Objetivo
