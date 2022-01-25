@@ -24,16 +24,6 @@ export default function PaginaInicial() {
   const [username, setUsername] = React.useState("gusdepaula");
   const roteamento = useRouter();
   const user = username.length > 1 ? username : "";
-  const [name, setName] = React.useState("");
-
-  React.useEffect(() => {
-    user
-      ? fetch(`https://api.github.com/users/${user}`)
-          .then((response) => response.json())
-          .then((data) => setName(data.name))
-      : setName("");
-  });
-
   return (
     <>
       <Box
@@ -100,11 +90,6 @@ export default function PaginaInicial() {
               onChange={function (event) {
                 const valor = event.target.value;
                 setUsername(valor);
-                user
-                  ? fetch(`https://api.github.com/users/${user}`)
-                      .then((response) => response.json())
-                      .then((data) => setName(data.name))
-                  : setName("");
               }}
               fullWidth
               textFieldColors={{
@@ -166,7 +151,7 @@ export default function PaginaInicial() {
                 borderRadius: "1000px",
               }}
             >
-              {!user ? ". . ." : name ? name : user}
+              {username}
             </Text>
           </Box>
           {/* Photo Area */}
