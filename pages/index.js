@@ -23,6 +23,16 @@ export default function PaginaInicial() {
   // const username = "gusdepaula";
   const [username, setUsername] = React.useState("gusdepaula");
   const roteamento = useRouter();
+  const user = username.length > 1 ? username : "";
+  const [name, setName] = React.useState("");
+
+  React.useEffect(() => {
+    user
+      ? fetch(`https://api.github.com/users/${user}`)
+          .then((response) => response.json())
+          .then((data) => setName(data.name))
+      : setName("");
+  });
 
   return (
     <>
@@ -84,22 +94,17 @@ export default function PaginaInicial() {
             >
               {appConfig.name}
             </Text>
-            {/* <input
-              type="text"
-              value={username}
-              onChange={function (event) {
-                console.log(event.target.value);
-                // Onde está o valor?
-                const valor = event.target.value;
-                // trocar o valor da variável
-                setUsername(valor);
-              }}
-            /> */}
+
             <TextField
               value={username}
               onChange={function (event) {
                 const valor = event.target.value;
                 setUsername(valor);
+                user
+                  ? fetch(`https://api.github.com/users/${user}`)
+                      .then((response) => response.json())
+                      .then((data) => setName(data.name))
+                  : setName("");
               }}
               fullWidth
               textFieldColors={{
@@ -146,7 +151,11 @@ export default function PaginaInicial() {
                 borderRadius: "50%",
                 marginBottom: "16px",
               }}
-              src={`https://github.com/${username}.png`}
+              src={
+                user
+                  ? `https://github.com/${user}.png`
+                  : `https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png`
+              }
             />
             <Text
               variant="body4"
@@ -157,7 +166,7 @@ export default function PaginaInicial() {
                 borderRadius: "1000px",
               }}
             >
-              {username}
+              {!user ? ". . ." : name ? name : user}
             </Text>
           </Box>
           {/* Photo Area */}
