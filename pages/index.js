@@ -1,37 +1,7 @@
 import { Box, Button, Text, TextField, Image } from "@skynexui/components";
-import { Helmet } from "react-helmet";
+import React from "react";
+import { useRouter } from "next/router";
 import appConfig from "../config.json";
-
-function GlobalStyle() {
-  return (
-    <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: "Open Sans", sans-serif;
-      }
-      /* App fit Height */
-      html,
-      body,
-      #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */
-    `}</style>
-  );
-}
 
 function Title(props) {
   const Tag = props.tag || "h1";
@@ -49,27 +19,13 @@ function Title(props) {
   );
 }
 
-// function HomePage() {
-//   return (
-//     <div>
-//       <GlobalStyle />
-//       <Title tag="h1">Boas vindas de volta!</Title>
-//       <h2>Discord - Alura Matrix</h2>
-//     </div>
-//   );
-// }
-
-// export default HomePage;
-
 export default function PaginaInicial() {
-  const username = "gusdepaula";
+  // const username = "gusdepaula";
+  const [username, setUsername] = React.useState("gusdepaula");
+  const roteamento = useRouter();
 
   return (
     <>
-      <Helmet>
-        <title>Aluracord - Matrix</title>
-      </Helmet>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: "flex",
@@ -104,6 +60,10 @@ export default function PaginaInicial() {
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={function (event) {
+              event.preventDefault();
+              roteamento.push("chat");
+            }}
             styleSheet={{
               display: "flex",
               flexDirection: "column",
@@ -124,8 +84,23 @@ export default function PaginaInicial() {
             >
               {appConfig.name}
             </Text>
-
+            {/* <input
+              type="text"
+              value={username}
+              onChange={function (event) {
+                console.log(event.target.value);
+                // Onde está o valor?
+                const valor = event.target.value;
+                // trocar o valor da variável
+                setUsername(valor);
+              }}
+            /> */}
             <TextField
+              value={username}
+              onChange={function (event) {
+                const valor = event.target.value;
+                setUsername(valor);
+              }}
               fullWidth
               textFieldColors={{
                 neutral: {
