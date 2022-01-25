@@ -1,4 +1,5 @@
 import { Box, Button, Text, TextField, Image } from "@skynexui/components";
+import { Helmet } from "react-helmet";
 import appConfig from "../config.json";
 
 function GlobalStyle() {
@@ -65,6 +66,9 @@ export default function PaginaInicial() {
 
   return (
     <>
+      <Helmet>
+        <title>Aluracord - Matrix</title>
+      </Helmet>
       <GlobalStyle />
       <Box
         styleSheet={{
