@@ -197,7 +197,7 @@ function MessageList(props) {
                 }}
                 tag="span"
               >
-                {new Date().toLocaleDateString()}
+                {new Date(mensagem.created_at).toLocaleString("pt-BR")}
               </Text>
             </Box>
             {mensagem.texto}
