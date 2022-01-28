@@ -3,6 +3,7 @@ import React from "react";
 import appConfig from "../config.json";
 import { useRouter } from "next/router";
 import { createClient } from "@supabase/supabase-js";
+import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
 
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzI5MTk0MywiZXhwIjoxOTU4ODY3OTQzfQ.UQXIDsxynqKfjkNspilP4X7-JKuC7gXdySIygPnO4q4";
@@ -120,6 +121,7 @@ export default function ChatPage() {
                 color: appConfig.theme.colors.neutrals[200],
               }}
             />
+            <ButtonSendSticker />
           </Box>
         </Box>
       </Box>
