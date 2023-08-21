@@ -11,7 +11,7 @@
 - [Nextjs](https://nextjs.org/)
 - [SkynexUI](https://github.com/skynexui/components)
 - [Vercel](https://vercel.com)
-- [Supabase] (https://supabase.com/)
+- [Supabase](https://supabase.com/)
 
 ## :rocket: Executando o projeto
 
